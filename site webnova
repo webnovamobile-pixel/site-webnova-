@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>webnova — Présentation & Démo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ========== BASE ========== */
+    .cart { display: none; }
+
+    :root{
+      --accent:#FF6A00;
+      --accent-2:#EE0979;
+      --bg:#f7f6f5;
+      --card:#ffffff;
+      --muted:#6b6b6b;
+    }
+    *{box-sizing:border-box}
+    body{font-family:'Poppins',system-ui,Arial; background:linear-gradient(180deg,#fbfaf9,#f0efef); color:#222; margin:0; -webkit-font-smoothing:antialiased}
+    a{color:inherit}
+    .container{max-width:1100px;margin:0 auto;padding:30px}
+
+    /* ========== HEADER ========== */
+    header{background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:white;padding:56px 20px;border-bottom-left-radius:18px;border-bottom-right-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,0.12)}
+    header .top{display:flex;align-items:center;justify-content:space-between;gap:20px;max-width:1100px;margin:0 auto}
+    header h1{font-size:2rem;letter-spacing:1px;margin:0}
+    header p{opacity:0.95;margin-top:6px;font-weight:300}
+    .cta{display:inline-flex;gap:10px}
+    .btn{background:white;color:var(--accent);padding:10px 16px;border-radius:10px;font-weight:700;border:none;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.12);transition:transform .18s,box-shadow .18s}
+    .btn:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,0.18)}
+    .btn-outline{background:transparent;border:2px solid rgba(255,255,255,0.25);color:white}
+
+    /* ========== HERO / SLOGAN ========== */
+    .hero{padding:40px 20px 24px;text-align:center}
+    .hero h2{font-size:1.9rem;margin-bottom:8px}
+    .hero p{color:var(--muted);max-width:700px;margin:0 auto}
+
+    /* ========== SERVICES ========== */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:26px}
+    .card{background:var(--card);border-radius:14px;padding:18px;box-shadow:0 8px 22px rgba(0,0,0,0.06);transition:transform .25s,box-shadow .25s}
+    .card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(0,0,0,0.12)}
+    .card h3{color:var(--accent);margin-bottom:8px}
+    .icon{width:52px;height:52px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;margin-bottom:12px}
+
+    /* ========== PRICING ========== */
+    .pricing{display:flex;gap:18px;margin-top:26px}
+    .price{flex:1;padding:18px;border-radius:12px;background:linear-gradient(180deg,#fff,#fff);text-align:center}
+    .price.best{box-shadow:0 22px 48px rgba(255,106,0,0.12);transform:scale(1.02)}
+    .price h4{color:var(--accent);margin-bottom:10px}
+    .price .cost{font-size:1.6rem;font-weight:700;margin:10px 0}
+
+    /* ========== DEMO ========= */
+    .device-row{display:flex;gap:16px;align-items:center;justify-content:center;margin-top:30px}
+    .device{background:linear-gradient(180deg,#fff,#faf9f8);width:260px;height:480px;border-radius:16px;box-shadow:0 12px 30px rgba(0,0,0,0.12);overflow:hidden}
+    .device.phone{width:180px;height:360px}
+
+    /* ========== SHOP ========== */
+    .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;margin-top:30px}
+    .product{background:white;border-radius:12px;overflow:hidden;box-shadow:0 8px 22px rgba(0,0,0,0.06)}
+    .product img{width:100%;height:150px;object-fit:cover}
+    .product .info{padding:12px}
+    .price-tag{font-weight:700;color:var(--accent)}
+
+    /* ========== CART ========== */
+    .cart{position:fixed;right:20px;bottom:20px;width:320px;background:white;border-radius:14px;padding:12px;box-shadow:0 18px 45px rgba(0,0,0,0.14);z-index:120}
+
+    /* ========== CONTACT ========== */
+    .contact{margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .contact form{background:white;padding:18px;border-radius:12px}
+    .contact input,.contact textarea{width:100%;padding:10px;margin-bottom:10px;border-radius:8px;border:1px solid #e6e6e6}
+    .contact .send{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:none;color:white;padding:12px;border-radius:10px;font-weight:700}
+
+    footer{text-align:center;margin-top:40px;color:var(--muted)}
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="top">
+      <div>
+        <h1>webnova — Sites</h1>
+        <p>Donnez une vraie présence digitale à votre commerce local.</p>
+      </div>
+      <div class="cta">
+        <button class="btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Demander un devis</button>
+        <button class="btn btn-outline" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">Voir la démo</button>
+        <button class="btn btn-outline" id="toggleTheme">Jour/Nuit</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h2>Un site qui rassure, et qui attire du monde</h2>
+      <p>Site vitrine, e-commerce, optimisation locale, commandes.</p>
+    </section>
+
+    <!-- ========== SERVICES ========== -->
+    <section>
+      <div class="grid">
+        <div class="card"><div class="icon">S</div><h3>Site Vitrine</h3><p>Simple et efficace</p></div>
+        <div class="card"><div class="icon">E</div><h3>E-commerce</h3><p>Panier & commandes</p></div>
+        <div class="card"><div class="icon">M</div><h3>Maintenance</h3><p>SEO, mises à jour</p></div>
+      </div>
+
+      <div class="pricing">
+        <div class="price"><h4>Starter</h4><div class="cost">49€</div><div>1 page</div></div>
+        <div class="price best"><h4>Pro</h4><div class="cost">129€</div><div>3 pages</div></div>
+        <div class="price"><h4>Business</h4><div class="cost">229€</div><div>Boutique complète</div></div>
+      </div>
+    </section>
+
+    <!-- ========== SHOP DEMO ========== -->
+    <section id="shop">
+      <h3>Démo Boutique</h3>
+      <div class="products" id="products"></div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section id="contact" class="contact">
+      
+      <!-- ⭐⭐⭐ FORMULAIRE FIXÉ ⭐⭐⭐ -->
+      <form action="https://formspree.io/f/xgvgygor" method="POST">
+  <h3>Demander un devis</h3>
+
+  <input name="name" placeholder="Votre nom" required>
+
+  <input name="email" type="email" placeholder="Votre email" required>
+
+  <textarea name="message" placeholder="Votre message" rows="5" required></textarea>
+
+  <button class="send" type="submit">Envoyer</button>
+</form>
+
+      <div class="card">
+        <h3>Contact direct</h3>
+        <p>Email : <b>webnova.mobile@gmail.com</b></p>
+        <p>Téléphone : <b>07 45 00 20 50</b></p>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ========== CART ========== -->
+  <div class="cart" id="cart">
+    <h4>Panier</h4>
+    <div class="cart-list" id="cartList"></div>
+    <div style="display:flex;justify-content:space-between;margin-top:10px">
+      <div>Total :</div>
+      <div id="cartTotal">0€</div>
+    </div>
+    <button id="checkout" class="checkout">Passer la commande</button>
+  </div>
+
+  <footer>
+    © 2025 — webnova — Présentation par Timeo
+  </footer>
+
+  <!-- ========== SCRIPT BOUTIQUE ========== -->
+  <script>
+    const demoProducts = [
+      {id:1,name:'Veste Confort',price:49,img:'https://www.jules.com/dw/image/v2/AAHK_PRD/on/demandware.static/-/Sites-core-master-catalog/default/dwf158008e/images/1007843_11846_V1.jpg?sw=1300&sh=1300&sm=fit'},
+      {id:2,name:'Pull Douillet',price:39,img:'https://gemo-gemo-fr-storage.omn.proximis.com/Imagestorage/imagesSynchro/0/0/687775cc45b49623b2ed915d4748f1d5975f3c1c_826556_1.jpeg'},
+      {id:3,name:'Pantalon Chic',price:59,img:'https://images.unsplash.com/photo-1520975917368-9c4b2b5f0a51?auto=format&fit=crop&w=800&q=60'},
+      {id:4,name:'Robe Élégante',price:69,img:'https://www.twinset.com/dw/image/v2/BCKJ_PRD/on/demandware.static/-/Sites-master-catalog/default/dw845d1d07/images/TwinSet/Images/Catalog/192TQ2019-00740-04.JPG'},
+      {id:5,name:'T-shirt Basique',price:19,img:'https://medias3.graindemalice.fr/products/1800x2128/842267/6371/842267_6371_1.jpg'},
+      {id:6,name:'Écharpe Mode',price:14,img:'https://img.static-rmg.be/a/view/q75/w840/h/2523769/cos-jpg.jpg'}
+    ];
+
+    const productsEl = document.getElementById('products');
+
+    demoProducts.forEach(p=>{
+      const el = document.createElement('div');
+      el.className='product';
+      el.innerHTML=`
+        <img src="${p.img}">
+        <div class="info">
+          <h5>${p.name}</h5>
+          <div class="price-tag">${p.price}€</div>
+          <button class="btn" style="margin-top:10px" onclick="addToCart(${p.id})">Ajouter</button>
+        </div>
+      `;
+      productsEl.appendChild(el);
+    });
+
+    let cart = [];
+
+    function addToCart(id){
+      cart.push(demoProducts.find(p=>p.id===id));
+      renderCart();
+    }
+
+    function renderCart(){
+      const list = document.getElementById('cartList');
+      list.innerHTML = '';
+
+      if(cart.length === 0){
+        list.innerHTML = '<p style="color:#777">Panier vide</p>';
+        document.getElementById('cartTotal').innerText = '0€';
+        return;
+      }
+
+      let total = 0;
+      cart.forEach(item=>{
+        total+=item.price;
+        list.innerHTML += `<div style="display:flex;justify-content:space-between;padding:6px 0">
+          <div>${item.name}</div><div>${item.price}€</div>
+        </div>`;
+      });
+
+      document.getElementById('cartTotal').innerText = total+'€';
+    }
+
+    document.getElementById('checkout').onclick = () => {
+      if(cart.length===0) return alert("Panier vide 😅");
+      alert("Commande enregistrée (version démo) !");
+      cart=[];
+      renderCart();
+    };
+  </script>
+ <script>
+document.addEventListener("DOMContentLoaded", () => {
+  
+  // ===== JOUR / NUIT =====
+  const root = document.documentElement;
+  let isNight = false;
+  const toggleBtn = document.getElementById('toggleTheme');
+
+  if(toggleBtn){
+    toggleBtn.addEventListener('click', () => {
+      const prices = document.querySelectorAll('.price');
+      const buttons = document.querySelectorAll('.btn');
+      if(!isNight){
+        // Mode sombre
+        root.style.setProperty('--bg', '#2c2c2c');
+        root.style.setProperty('--card', '#3a3a3a');
+        root.style.setProperty('--muted', '#b0b0b0');
+        root.style.setProperty('--accent', '#555555');
+        root.style.setProperty('--accent-2', '#777777');
+        document.body.style.background = 'linear-gradient(180deg,#333,#2c2c2c)';
+
+        prices.forEach(p => {
+          p.style.background = '#3a3a3a';
+          p.style.color = '#fff';
+          p.querySelectorAll('h4, .cost, div').forEach(el => el.style.color = '#fff');
+          p.classList.remove('best');
+        });
+
+        buttons.forEach(b => {
+          b.style.backgroundColor = '#555';
+          b.style.color = '#eee';
+        });
+
+      } else {
+        // Mode jour
+        root.style.setProperty('--bg', '#f7f6f5');
+        root.style.setProperty('--card', '#ffffff');
+        root.style.setProperty('--muted', '#6b6b6b');
+        root.style.setProperty('--accent', '#FF6A00');
+        root.style.setProperty('--accent-2', '#EE0979');
+        document.body.style.background = 'linear-gradient(180deg,#fbfaf9,#f0efef)';
+
+        prices.forEach((p,i) => {
+          p.style.background = '';
+          p.style.color = '';
+          p.querySelectorAll('h4, .cost, div').forEach(el => el.style.color = '');
+          if(i===1) p.classList.add('best'); // Pro garde l'effet
+        });
+
+        buttons.forEach(b => {
+          b.style.backgroundColor = '';
+          b.style.color = '';
+        });
+      }
+      isNight = !isNight;
+    });
+  }
+});
+</script>
+
+
+
+
+
+</body>
+</html>
